@@ -28,8 +28,9 @@ public class ProgramUI extends JFrame implements MouseListener {
     Boolean userMode = false ;
     float puissance = 0 ;
 
-    ArrayList<AccessPoint> APs = new ArrayList<>();
+    ArrayList<AccessPoint> APs = new ArrayList<AccessPoint>();
     ArrayList<Obstacle> obs_list = new ArrayList<Obstacle>();
+    Arraylist<User> user_list=new Arraylist<User>();
     Object[] materials = {"bois","plastique","verre","verre teinté","eau","être vivant","briques","plâtre",
                             "céramique","papier","béton","verre blindé","métal"};
     String material;
