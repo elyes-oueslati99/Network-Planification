@@ -79,7 +79,7 @@ public class ProgramUI extends JFrame implements MouseListener {
             x= Integer.parseInt(s1.substring(0, s1.indexOf('-')));
             y= Integer.parseInt(s1.substring(s1.indexOf('-')+1));
             AccessPoint ap = AccessPoint.calculateAP(x,y,APs);
-            String zone = ap.distance(x,y) < ap.r ? " et dans sa zone de couverture" : " mais n'est pas dans sa zone de couverture" ;
+            String zone = ap.distance(x,y) < ap.r ? " est dans sa zone de couverture" : " mais n'est pas dans sa zone de couverture" ;
             if(APs.size()!=0){
                 userLabel.setText("l'utilisateur a ("+x+","+y+") est plus proche de l'AP "+ap.num
                 + zone);
@@ -149,9 +149,8 @@ public class ProgramUI extends JFrame implements MouseListener {
             user.drawUser(ga);
             if(APs.size()!=0){
                 AccessPoint ap = AccessPoint.calculateAP(x,y,APs);
-                String zone = ap.distance(x,y) < ap.r ? " et dans sa zone de couverture" : " mais n'est pas dans sa zone de couverture" ;
-                userLabel.setText("l'utilisateur a ("+x+","+y+") est plus proche de l'AP "+ap.num
-                        + zone);
+                String zone = ap.distance(x,y) < ap.r ? " et il est dans sa zone de couverture" : " mais n'est pas dans sa zone de couverture" ;
+                userLabel.setText("l'utilisateur a ("+x+","+y+") est plus proche de l'AP \n "+ap.num + zone);
             } else {
                 userLabel.setText("No APs available");
             }
@@ -177,7 +176,7 @@ public class ProgramUI extends JFrame implements MouseListener {
             // 1= right/below, -1 = left/above
             if(obs.leftOrRight(affectedAP.xc)==1){
                 pixX = obs.xc+5 ; //+width
-                if(obs.aboveOrBelow(affectedAP.yc)==1){
+                if(obs.aboveOrBelow(affectedAP.yc)==1){ // right/below
                     pixY = obs.yc+24; //+height
                     while (affectedAP.isInRange(pixX,pixY)) {
                         while (affectedAP.isInRange(pixX,pixY)&&pixY>=obs.yc-limit) {
@@ -190,7 +189,7 @@ public class ProgramUI extends JFrame implements MouseListener {
                     }
 
 
-                } else {
+                } else { // right/above
                     pixY = obs.yc; //+height
                     while (affectedAP.isInRange(pixX,pixY)) {
                         while (affectedAP.isInRange(pixX,pixY)&&pixY<=obs.yc+25+limit) {
@@ -204,7 +203,7 @@ public class ProgramUI extends JFrame implements MouseListener {
                 }
             } else {
                 pixX = obs.xc-1;
-                if(obs.aboveOrBelow(affectedAP.yc)==1){
+                if(obs.aboveOrBelow(affectedAP.yc)==1){ // left/below
                     pixY = obs.yc+24; //+height
                     while (affectedAP.isInRange(pixX,pixY)) {
                         while (affectedAP.isInRange(pixX,pixY)&&pixY>=obs.yc-limit) {
@@ -216,7 +215,7 @@ public class ProgramUI extends JFrame implements MouseListener {
                         pixY = obs.yc+25-limit;; //+height
                     }
 
-                } else {
+                } else { // left/above
                     pixY = obs.yc;
                     while (affectedAP.isInRange(pixX,pixY)) {
                         while (affectedAP.isInRange(pixX,pixY)&&pixY<=obs.yc+25+limit) {
